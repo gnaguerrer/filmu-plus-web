@@ -8,11 +8,24 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
+			fontFamily: {
+				poppins: ['Poppins', 'sans-serif'],
+			},
 			backgroundImage: {
+				projector: 'var(--projector-background)',
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-dark-purple': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic':
 					'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+			},
+			colors: {
+				'filmu-purple': {
+					main: '#6100c2',
+					light: '#7900C2',
+				},
+				'filmu-black': {
+					main: '#1E1E1E',
+				},
 			},
 		},
 	},

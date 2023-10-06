@@ -1,13 +1,17 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
-import { getServerSession } from 'next-auth';
+import { signIn, useSession } from 'next-auth/react';
+import { FcGoogle } from 'react-icons/fc';
+import { images } from '@/utils';
 
-const HomePage = async (): Promise<React.JSX.Element> => {
-	const session = await getServerSession();
+const SignInPage = (): React.JSX.Element => {
+	const session = useSession();
 
-	if (!session) {
-		redirect('/signIn');
+	if (session) {
+		redirect('/');
 	}
 
 	return (
@@ -16,7 +20,7 @@ const HomePage = async (): Promise<React.JSX.Element> => {
 				<div className="w-full h-full flex flex-col items-center justify-center">
 					<Image
 						className="w-32 ml-2.5"
-						src={require('../../public/filmu_plus_logo.png')}
+						src={images.filmuLogo}
 						alt="filmu_plus_logo"
 						width="0"
 						height="0"
@@ -24,10 +28,19 @@ const HomePage = async (): Promise<React.JSX.Element> => {
 						placeholder="blur"
 					/>
 					<span className="mt-5 text-gray-50/90">Enjoy watching</span>
+					<button
+						className="button-contained mt-4 flex items-center"
+						onClick={() => signIn('google')}
+					>
+						<span className="bg-white flex items-center justify-center rounded-full p-1 mr-2">
+							<FcGoogle />
+						</span>
+						Sign in with Google
+					</button>
 				</div>
 			</div>
 		</main>
 	);
 };
 
-export default HomePage;
+export default SignInPage;
