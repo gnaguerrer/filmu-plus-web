@@ -4,9 +4,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root {
-	--foreground-rgb: 0, 0, 0;
-	--background-start-rgb: 214, 219, 220;
-	--background-end-rgb: 255, 255, 255;
 	--projector-background: url('../../public/projector_background.jpg');
 	--filmu-logo: url('../../public/filmu_plus_logo.png');
 
@@ -15,24 +12,13 @@
 	--filmu-purple-dark: #5a04b0;
 
 	--filmu-black-dark: #1e1e1e;
-}
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--foreground-rgb: 255, 255, 255;
-		--background-start-rgb: 0, 0, 0;
-		--background-end-rgb: 0, 0, 0;
-	}
+	--scroll-bar: #3f3e3e;
 }
 
 body {
-	color: rgb(var(--foreground-rgb));
-	background: linear-gradient(
-			to bottom,
-			transparent,
-			rgb(var(--background-end-rgb))
-		)
-		rgb(var(--background-start-rgb));
+	color: rgba(241, 245, 249, 0.7);
+	background: var(--filmu-black-dark);
 }
 
 @layer base {
@@ -53,4 +39,23 @@ body {
 	.button-contained:hover {
 		background-color: var(--filmu-purple-dark);
 	}
+}
+
+.scrollbar-dark {
+	scrollbar-width: thin;
+	scrollbar-color: var(--scroll-bar);
+	/* scrollbar-gutter: stable; */
+}
+
+.scrollbar-dark::-webkit-scrollbar {
+	width: 9px;
+}
+
+.scrollbar-dark::-webkit-scrollbar-track {
+	border-radius: 4px;
+}
+
+.scrollbar-dark::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	border: 6px solid var(--scroll-bar);
 }
