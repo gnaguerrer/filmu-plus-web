@@ -10,7 +10,7 @@ import { images } from '@/utils';
 const SignInPage = (): React.JSX.Element => {
 	const session = useSession();
 
-	if (session) {
+	if (session?.data) {
 		redirect('/');
 	}
 

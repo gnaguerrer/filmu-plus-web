@@ -33,7 +33,7 @@ export const Header = (): React.JSX.Element => {
 		const { target } = event;
 		if (target) {
 			const { scrollHeight, scrollTop } = target as HTMLInputElement;
-			if (scrollTop >= scrollHeight * 0.2) {
+			if (scrollTop >= scrollHeight * 0.18) {
 				setIsScrolled(true);
 			} else {
 				setIsScrolled(false);
@@ -60,7 +60,7 @@ export const Header = (): React.JSX.Element => {
 	return (
 		<header
 			className={clsx(
-				'flex items-center justify-between  h-24 sticky top-0 z-50 transition-all duration-700',
+				'w-full flex items-center justify-between h-24 absolute top-0 z-50 transition-all duration-700',
 				{
 					'bg-filmu-black-main/90': isScrolled,
 				}
