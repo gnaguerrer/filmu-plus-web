@@ -27,7 +27,9 @@ const SignInPage = (): React.JSX.Element => {
 						sizes="100vw"
 						placeholder="blur"
 					/>
-					<span className="mt-5 text-gray-50/90">Enjoy watching</span>
+					<span className="mt-5 text-gray-50/90">
+						Explore movies and TV shows.
+					</span>
 					<button
 						className="button-contained mt-4 flex items-center"
 						onClick={() => signIn('google')}

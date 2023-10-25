@@ -13,18 +13,10 @@ const HomePage = async (): Promise<React.JSX.Element> => {
 	return (
 		<div
 			id="root-container"
-			className="w-screen h-screen font-poppins overflow-y-auto scrollbar-dark"
+			className="flex flex-col w-screen h-screen font-poppins overflow-y-auto scrollbar-dark"
 		>
 			<Header />
-			<main className="flex flex-col justify-between overflow-y-auto">
-				<div className="flex flex-col">
-					{Array.from(Array(10).keys()).map((item) => (
-						<div key={item} className="mb-4 py-12 px-16">
-							content
-						</div>
-					))}
-				</div>
-			</main>
+			<main className="flex flex-col justify-between flex-grow" />
 			<Footer />
 		</div>
 	);

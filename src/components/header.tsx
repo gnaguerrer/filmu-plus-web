@@ -4,8 +4,10 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import { FaCircleUser } from 'react-icons/fa6';
+import { PiSignOutBold } from 'react-icons/pi';
+import { TiArrowSortedUp } from 'react-icons/ti';
 import { User } from '@/types';
 import { images } from '@/utils';
 
@@ -28,6 +30,7 @@ export const Header = (): React.JSX.Element => {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [user, setUser] = useState<User | undefined>();
 	const session = useSession();
+	const [openDropdown, setOpenDropdown] = useState(false);
 
 	const handleScroll = (event: Event): void => {
 		const { target } = event;
@@ -53,7 +56,6 @@ export const Header = (): React.JSX.Element => {
 		if (session?.data?.user && !user) {
 			setUser(session.data.user as User);
 		}
-
 		return () => {};
 	}, [session?.data]);
 
@@ -88,7 +90,10 @@ export const Header = (): React.JSX.Element => {
 					placeholder="blur"
 				/>
 			</Link>
-			<button className="flex items-center pr-10">
+			<button
+				className="flex items-center pr-10"
+				onClick={() => setOpenDropdown(true)}
+			>
 				{user?.image ? (
 					<Image
 						className="w-10 rounded-full ring-2 ring-filmu-purple-main/70 hover:ring-filmu-purple-main"
@@ -104,6 +109,27 @@ export const Header = (): React.JSX.Element => {
 					</span>
 				)}
 			</button>
+			<div
+				className={clsx('absolute w-screen h-screen inset-0', {
+					hidden: !openDropdown,
+				})}
+				onClick={() => setOpenDropdown(false)}
+			>
+				<TiArrowSortedUp className="absolute top-[67px] right-[53px]" />
+				<div className="absolute top-20 right-10 w-44 rounded-lg shadow-lg bg-filmu-black-800  ring-1 ring-black ring-opacity-5 py-2 px-2">
+					<ul>
+						<li>
+							<button
+								className="w-full text-left px-1 hover:text-white flex items-center"
+								onClick={() => signOut()}
+							>
+								<PiSignOutBold size={20} className="mr-1.5" />
+								Log Out
+							</button>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</header>
 	);
 };

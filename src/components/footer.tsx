@@ -4,7 +4,7 @@ import { images } from '@/utils';
 
 export const Footer = (): React.JSX.Element => {
 	return (
-		<footer className="flex items-center justify-center flex-col pt-4 pb-6">
+		<footer className="centered-flex flex-col pt-4 pb-6">
 			<Image
 				className="w-20"
 				src={images.filmuLogo}
