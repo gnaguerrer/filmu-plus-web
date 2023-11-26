@@ -44,7 +44,6 @@ body {
 .scrollbar-dark {
 	scrollbar-width: thin;
 	scrollbar-color: var(--scroll-bar);
-	/* scrollbar-gutter: stable; */
 }
 
 .scrollbar-dark::-webkit-scrollbar {
@@ -58,6 +57,16 @@ body {
 .scrollbar-dark::-webkit-scrollbar-thumb {
 	border-radius: 4px;
 	border: 6px solid var(--scroll-bar);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 }
 
 .centered-flex {
