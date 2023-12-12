@@ -1,7 +1,7 @@
 import React from 'react';
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
-import { Footer, Header } from '@/components';
+import { Footer, Header, PosterList } from '@/components';
 
 const HomePage = async (): Promise<React.JSX.Element> => {
 	const session = await getServerSession();
@@ -16,7 +16,9 @@ const HomePage = async (): Promise<React.JSX.Element> => {
 			className="flex flex-col w-screen h-screen font-poppins overflow-y-auto scrollbar-dark"
 		>
 			<Header />
-			<main className="flex flex-col justify-between flex-grow" />
+			<main className="flex flex-col flex-grow mt-16">
+				<PosterList />
+			</main>
 			<Footer />
 		</div>
 	);
