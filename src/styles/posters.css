@@ -1,0 +1,10 @@
+.chevron-icon-list {
+	opacity: 0;
+}
+
+.chevron-container {
+}
+
+.chevron-container:hover .chevron-icon-list {
+	opacity: 1;
+}

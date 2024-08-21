@@ -7,7 +7,7 @@ export const Poster = (props: IPoster): React.JSX.Element => {
 	return (
 		<button
 			className="centered-flex flex-col flex-shrink-0 h-72 w-52 rounded-lg relative overflow-hidden mb-5 hover:ring-2 	
-hover:ring-filmu-purple-main/70 hover:scale-105 transition-all"
+hover:ring-filmu-purple-main/70 hover:scale-110 transition-all"
 		>
 			<div className="full-item bg-black/20 absolute hover:bg-black/0 transition-colors duration-300" />
 			<Image

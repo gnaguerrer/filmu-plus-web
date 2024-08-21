@@ -27,3 +27,8 @@ export interface MovieItem {
 	vote_average: number;
 	vote_count: number;
 }
+
+export enum TimeWindow {
+	day = 'day',
+	week = 'week',
+}

@@ -33,6 +33,15 @@ const config: Config = {
 					400: '#888888',
 				},
 			},
+			keyframes: {
+				'scale-pulse': {
+					'0%, 100%': { transform: 'scale(0.95)' },
+					'50%': { transform: 'scale(1.2)' },
+				},
+			},
+			animation: {
+				'scale-pulse': 'scale-pulse 1.9s ease infinite',
+			},
 		},
 	},
 	plugins: [],

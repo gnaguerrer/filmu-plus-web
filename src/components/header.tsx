@@ -68,7 +68,7 @@ export const Header = (): React.JSX.Element => {
 				}
 			)}
 		>
-			<div className="flex items-center h-16 pl-10">
+			<div className="items-center h-16 pl-10 hidden md:flex">
 				{options.map((option) => (
 					<Link
 						key={option.label}
@@ -79,19 +79,21 @@ export const Header = (): React.JSX.Element => {
 					</Link>
 				))}
 			</div>
-			<Link className="absolute left-[48%]" href="/">
-				<Image
-					className="w-28"
-					src={images.filmuLogo}
-					alt="filmu_plus_logo"
-					width="0"
-					height="0"
-					sizes="100vw"
-					placeholder="blur"
-				/>
-			</Link>
+			<div className=" w-screen  absolute top-0 -z-10 centered-flex h-24 ">
+				<Link className=" " href="/">
+					<Image
+						className="w-28"
+						src={images.filmuLogo}
+						alt="filmu_plus_logo"
+						width="0"
+						height="0"
+						sizes="100vw"
+						placeholder="blur"
+					/>
+				</Link>
+			</div>
 			<button
-				className="flex items-center pr-10"
+				className="hidden md:flex items-center pr-10"
 				onClick={() => setOpenDropdown(true)}
 			>
 				{user?.image ? (

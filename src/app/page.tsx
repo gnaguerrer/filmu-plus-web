@@ -2,9 +2,11 @@ import React from 'react';
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import { Footer, Header, PosterList } from '@/components';
+import { getMovies } from '@/services';
 
 const HomePage = async (): Promise<React.JSX.Element> => {
 	const session = await getServerSession();
+	const data = await getMovies();
 
 	if (!session?.user) {
 		redirect('/signIn');
@@ -17,7 +19,18 @@ const HomePage = async (): Promise<React.JSX.Element> => {
 		>
 			<Header />
 			<main className="flex flex-col flex-grow mt-16">
-				<PosterList />
+				<PosterList
+					title={'Week'}
+					data={
+						data?.results?.map((movie) => ({
+							...movie,
+							image: movie.poster_path,
+							backdrop: movie.backdrop_path,
+							rating: movie.vote_average,
+						})) ?? []
+					}
+					totalPosts={data?.total_results}
+				/>
 			</main>
 			<Footer />
 		</div>

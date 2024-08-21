@@ -7,3 +7,9 @@ export interface IPoster {
 	rating: number;
 	auldt?: boolean;
 }
+
+export interface IPosterList {
+	data: IPoster[];
+	totalPosts: number;
+	title?: string;
+}
