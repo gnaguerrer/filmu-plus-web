@@ -11,12 +11,9 @@ const HomePage = async (): Promise<React.JSX.Element> => {
 	}
 
 	return (
-		<div
-			id="root-container"
-			className="flex flex-col w-screen h-screen font-poppins overflow-y-auto scrollbar-dark"
-		>
+		<div className="flex flex-col w-screen min-h-screen font-poppins">
 			<Header />
-			<main className="flex flex-col flex-grow mt-16">
+			<main className="flex flex-col flex-grow mt-16 scrollbar-dark overflow-x-hidden max-w-full">
 				<PosterList />
 			</main>
 			<Footer />

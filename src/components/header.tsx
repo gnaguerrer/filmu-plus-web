@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
 import { signOut, useSession } from 'next-auth/react';
 import { FaCircleUser } from 'react-icons/fa6';
@@ -12,6 +13,10 @@ import { User } from '@/types';
 import { images } from '@/utils';
 
 const options = [
+	{
+		href: '/',
+		label: 'Home',
+	},
 	{
 		href: '#',
 		label: 'Trending',
@@ -32,23 +37,20 @@ export const Header = (): React.JSX.Element => {
 	const session = useSession();
 	const [openDropdown, setOpenDropdown] = useState(false);
 
-	const handleScroll = (event: Event): void => {
-		const { target } = event;
-		if (target) {
-			const { scrollHeight, scrollTop } = target as HTMLInputElement;
-			if (scrollTop >= scrollHeight * 0.18) {
-				setIsScrolled(true);
-			} else {
-				setIsScrolled(false);
-			}
+	const pathname = usePathname();
+
+	const handleScroll = (): void => {
+		if (window.scrollY > window.innerHeight * 0.1) {
+			setIsScrolled(true);
+		} else {
+			setIsScrolled(false);
 		}
 	};
 
 	useEffect(() => {
-		const rootContainer = document.getElementById('root-container');
-		rootContainer?.addEventListener('scroll', handleScroll, false);
+		window.addEventListener('scroll', handleScroll);
 		return () => {
-			rootContainer?.removeEventListener('scroll', handleScroll, false);
+			window.removeEventListener('scroll', handleScroll);
 		};
 	}, []);
 
@@ -62,41 +64,50 @@ export const Header = (): React.JSX.Element => {
 	return (
 		<header
 			className={clsx(
-				'w-full flex items-center justify-between h-24 absolute top-0 z-50 transition-all duration-700',
+				'w-full flex items-center justify-between h-24 fixed top-0 z-50 transition-all duration-700',
 				{
 					'bg-filmu-black-main/90': isScrolled,
 				}
 			)}
 		>
+			{' '}
 			<div className="flex items-center h-16 pl-10">
-				{options.map((option) => (
-					<Link
-						key={option.label}
-						className="px-4 mx-1 py-3 hover:text-slate-100 transition-opacity"
-						href={option.href}
-					>
-						{option.label}
-					</Link>
-				))}
+				<Link href="/">
+					<Image
+						className="w-28"
+						src={images.filmuLogo}
+						alt="filmu_plus_logo"
+						width="0"
+						height="0"
+						sizes="100vw"
+						placeholder="blur"
+					/>
+				</Link>
+				<div className="flex items-center h-16 pl-10">
+					{options.map((option) => (
+						<Link
+							key={option.label}
+							className={clsx(
+								'px-4 mx-1 py-3 hover:text-slate-100 transition-opacity hover:[text-shadow:_1px_1px_8px_rgba(237,228,255,0.5)]',
+								{
+									' text-purple-200 hover:text-purple-100':
+										option.href === pathname,
+								}
+							)}
+							href={option.href}
+						>
+							{option.label}
+						</Link>
+					))}
+				</div>
 			</div>
-			<Link className="absolute left-[48%]" href="/">
-				<Image
-					className="w-28"
-					src={images.filmuLogo}
-					alt="filmu_plus_logo"
-					width="0"
-					height="0"
-					sizes="100vw"
-					placeholder="blur"
-				/>
-			</Link>
 			<button
 				className="flex items-center pr-10"
 				onClick={() => setOpenDropdown(true)}
 			>
 				{user?.image ? (
 					<Image
-						className="w-10 rounded-full ring-2 ring-filmu-purple-main/70 hover:ring-filmu-purple-main"
+						className="w-10 rounded-full ring-2 ring-filmu-purple-main/70 hover:ring-filmu-purple-main shadow-3xl shadow-filmu-purple-main transition-all"
 						src={user.image}
 						alt="profile_photo"
 						width="0"

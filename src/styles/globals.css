@@ -19,6 +19,7 @@
 body {
 	color: rgba(241, 245, 249, 0.7);
 	background: var(--filmu-black-dark);
+	overflow-x: hidden;
 }
 
 @layer base {
