@@ -7,3 +7,8 @@ export interface IPoster {
 	rating: number;
 	auldt?: boolean;
 }
+
+export interface IAvatar {
+	src?: string;
+	hover?: boolean;
+}

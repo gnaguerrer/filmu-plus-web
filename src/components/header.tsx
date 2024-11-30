@@ -4,13 +4,14 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
 import clsx from 'clsx';
 import { signOut, useSession } from 'next-auth/react';
-import { FaCircleUser } from 'react-icons/fa6';
+import { IoMenu } from 'react-icons/io5';
 import { PiSignOutBold } from 'react-icons/pi';
-import { TiArrowSortedUp } from 'react-icons/ti';
 import { User } from '@/types';
 import { images } from '@/utils';
+import { Avatar } from './avatar';
 
 const options = [
 	{
@@ -32,12 +33,10 @@ const options = [
 ];
 
 export const Header = (): React.JSX.Element => {
+	const session = useSession();
+	const pathname = usePathname();
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [user, setUser] = useState<User | undefined>();
-	const session = useSession();
-	const [openDropdown, setOpenDropdown] = useState(false);
-
-	const pathname = usePathname();
 
 	const handleScroll = (): void => {
 		if (window.scrollY > window.innerHeight * 0.1) {
@@ -83,64 +82,88 @@ export const Header = (): React.JSX.Element => {
 						placeholder="blur"
 					/>
 				</Link>
-				<div className="flex items-center h-16 pl-10">
+				<div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-4">
 					{options.map((option) => (
 						<Link
 							key={option.label}
-							className={clsx(
-								'px-4 mx-1 py-3 hover:text-slate-100 transition-opacity hover:[text-shadow:_1px_1px_8px_rgba(237,228,255,0.5)]',
-								{
-									' text-purple-200 hover:text-purple-100':
-										option.href === pathname,
-								}
-							)}
 							href={option.href}
+							aria-current={option.href === pathname ? 'page' : undefined}
+							className={clsx(
+								'transition-all inline-flex items-center border-b-2 px-1 pt-1 pb-1 hover:[text-shadow:_1px_1px_8px_rgba(237,228,255,0.5)]',
+								option.href === pathname
+									? 'border-purple-200 text-purple-200 hover:text-purple-200'
+									: 'border-transparent  hover:border-slate-100/60 hover:text-slate-100'
+							)}
 						>
 							{option.label}
 						</Link>
 					))}
 				</div>
 			</div>
-			<button
-				className="flex items-center pr-10"
-				onClick={() => setOpenDropdown(true)}
-			>
-				{user?.image ? (
-					<Image
-						className="w-10 rounded-full ring-2 ring-filmu-purple-main/70 hover:ring-filmu-purple-main shadow-3xl shadow-filmu-purple-main transition-all"
-						src={user.image}
-						alt="profile_photo"
-						width="0"
-						height="0"
-						sizes="100vw"
-					/>
-				) : (
-					<span className="text-slate-100/70  hover:text-slate-100 transition-all duration-300">
-						<FaCircleUser size={38} />
-					</span>
-				)}
-			</button>
-			<div
-				className={clsx('absolute w-screen h-screen inset-0', {
-					hidden: !openDropdown,
-				})}
-				onClick={() => setOpenDropdown(false)}
-			>
-				<TiArrowSortedUp className="absolute top-[67px] right-[53px]" />
-				<div className="absolute top-20 right-10 w-44 rounded-lg shadow-lg bg-filmu-black-800  ring-1 ring-black ring-opacity-5 py-2 px-2">
-					<ul>
-						<li>
-							<button
-								className="w-full text-left px-1 hover:text-white flex items-center"
-								onClick={() => signOut()}
+			<Popover className="relative">
+				<PopoverButton className="mr-6 hidden sm:flex outline-none  ">
+					<Avatar hover src={user?.image} />
+				</PopoverButton>
+				<PopoverPanel
+					anchor="bottom"
+					className={clsx(
+						'bg-filmu-black-800 min-w-[11rem] mt-2 rounded-lg shadow-lg px-1 pt-1 pb-1.5'
+					)}
+				>
+					<div className={clsx('w-full flex flex-col bg-filmu-black-800 px-1')}>
+						<p className="border-b border-slate-100/40 pb-1 pt-1.5 mb-1">
+							{user?.name}
+						</p>
+						<button
+							className="w-full text-left px-1 py-1.5 hover:text-white flex items-center hover:bg-slate-50/10 rounded-lg"
+							onClick={() => signOut()}
+						>
+							<PiSignOutBold size={20} className="mr-1.5" />
+							Log Out
+						</button>
+					</div>
+				</PopoverPanel>
+			</Popover>
+			<Popover className="relative flex sm:hidden ">
+				<PopoverButton className="mr-6 flex sm:hidden outline-none  ">
+					<IoMenu size={24} className=" transition-all hover:text-slate-50  " />
+				</PopoverButton>
+				<PopoverPanel
+					anchor="bottom"
+					className="flex flex-col bg-filmu-black-800 min-w-[11rem] mt-2 rounded-lg shadow-lg px-1 py-1.5"
+				>
+					<div className="flex flex-col gap-1 border-b border-slate-100/40 pb-1 pt-1.5 mb-1">
+						{options.map((option) => (
+							<Link
+								key={option.label}
+								href={option.href}
+								aria-current={option.href === pathname ? 'page' : undefined}
+								className={clsx(
+									'w-full text-left px-1.5 py-1.5 hover:text-white rounded-lg hover:bg-slate-50/10',
+									option.href === pathname
+										? 'border-l-2 border-slate-100 text-white bg-slate-100/10'
+										: 'hover:bg-slate-50/10'
+								)}
 							>
-								<PiSignOutBold size={20} className="mr-1.5" />
-								Log Out
-							</button>
-						</li>
-					</ul>
-				</div>
-			</div>
+								{option.label}
+							</Link>
+						))}
+					</div>
+					<div className="pt-2 px-1.5">
+						<div className="flex gap-2 items-center">
+							<Avatar hover src={user?.image} />
+							<p>{user?.name}</p>
+						</div>
+						<button
+							className="w-full text-left px-1 py-1.5 hover:text-white flex items-center hover:bg-slate-50/10 rounded-lg mt-2"
+							onClick={() => signOut()}
+						>
+							<PiSignOutBold size={20} className="mr-1.5" />
+							Log Out
+						</button>
+					</div>
+				</PopoverPanel>
+			</Popover>
 		</header>
 	);
 };
