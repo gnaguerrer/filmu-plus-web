@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root {
 	--projector-background: url('../../public/projector_background.jpg');
@@ -40,6 +39,12 @@ body {
 	.button-contained:hover {
 		background-color: var(--filmu-purple-dark);
 	}
+
+	.centered-flex {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 }
 
 .scrollbar-dark {
@@ -68,12 +73,6 @@ body {
 .scrollbar-hide {
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
-}
-
-.centered-flex {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 
 .full-item {

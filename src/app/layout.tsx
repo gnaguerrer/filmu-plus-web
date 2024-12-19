@@ -1,10 +1,8 @@
 import React from 'react';
-import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
+import { Footer, Header } from '@/components';
 import { NextAuthProvider, QueryProvider } from '@/providers';
 import '../styles/globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
 	title: 'Filmu +',
@@ -20,7 +18,13 @@ const RootLayout = ({
 		<html lang="en">
 			<NextAuthProvider>
 				<QueryProvider>
-					<body className={inter.className}>{children}</body>
+					<body>
+						<div className="flex flex-col w-screen min-h-screen font-poppins">
+							<Header />
+							{children}
+							<Footer />
+						</div>
+					</body>
 				</QueryProvider>
 			</NextAuthProvider>
 		</html>
