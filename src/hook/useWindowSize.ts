@@ -9,18 +9,22 @@ interface WindowSize {
 
 export const useWindowSize = (): WindowSize => {
 	const [size, setSize] = useState<WindowSize>({
-		width: window.innerWidth,
-		height: window.innerHeight,
+		width: null,
+		height: null,
 	});
 
-	const handleResize = (): void => {
-		setSize({
-			width: window.innerWidth,
-			height: window.innerHeight,
-		});
-	};
-
 	useLayoutEffect(() => {
+		if (typeof window === 'undefined') return;
+
+		const handleResize = (): void => {
+			setSize({
+				width: window.innerWidth,
+				height: window.innerHeight,
+			});
+		};
+
+		handleResize();
+
 		window.addEventListener('resize', handleResize);
 
 		return () => {
