@@ -1,3 +1,5 @@
+import { MovieItem } from './services';
+
 export interface IPoster {
 	id: number;
 	title: string;
@@ -11,4 +13,10 @@ export interface IPoster {
 export interface IAvatar {
 	src?: string;
 	hover?: boolean;
+}
+
+export interface IPosterList {
+	data: MovieItem[];
+	isLoading?: boolean;
+	title?: string;
 }
