@@ -12,7 +12,7 @@ hover:ring-filmu-purple-main/70 hover:scale-105 transition-all"
 			<div className="full-item bg-black/20 absolute hover:bg-black/0 transition-colors duration-300" />
 			<Image
 				className="full-item"
-				src={`${process.env.NEXT_PUBLIC_TMDB_IMAGES}/original/${image}`}
+				src={`${process.env.NEXT_PUBLIC_TMDB_IMAGES}/w500/${image}`}
 				alt={title}
 				width="0"
 				height="0"

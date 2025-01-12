@@ -18,16 +18,16 @@ const options = [
 		href: '/',
 		label: 'Home',
 	},
+	// {
+	// 	href: '/trending',
+	// 	label: 'Trending',
+	// },
 	{
-		href: '#',
-		label: 'Trending',
-	},
-	{
-		href: '#',
+		href: '/movies',
 		label: 'Movies',
 	},
 	{
-		href: '#',
+		href: '/tv-series',
 		label: 'TV Series',
 	},
 ];
