@@ -89,17 +89,15 @@ export const PosterList = (props: IPosterList): React.JSX.Element => {
 					? [0, 1, 2, 3, 4, 5, 6].map((item) => (
 							<div
 								key={item}
-								className="h-72 w-52 bg-neutral-700 rounded-lg animate-pulse"
+								className="h-72 w-52 bg-neutral-700 rounded-lg animate-pulse flex-shrink-0 mb-5"
 							/>
 						))
 					: data?.map((poster) => (
 							<Poster
 								id={poster.id}
 								key={poster.id}
-								title={poster.title}
-								overview={poster.overview}
+								title={poster?.title ?? poster?.name ?? ''}
 								image={poster.poster_path}
-								backdrop={poster.poster_path}
 								rating={poster.vote_average}
 							/>
 						))}

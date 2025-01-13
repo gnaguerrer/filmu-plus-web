@@ -32,3 +32,34 @@ export interface Genre {
 	id: number;
 	name: string;
 }
+
+export interface SerieItem {
+	backdrop_path: string;
+	id: number;
+	name: string;
+	original_name: string;
+	overview: string;
+	poster_path: string;
+	media_type: string;
+	adult: boolean;
+	original_language: string;
+	genre_ids: number[];
+	popularity: number;
+	first_air_date: string;
+	vote_average: number;
+	vote_count: number;
+	origin_country: string[];
+}
+
+export interface MediaItem extends Partial<MovieItem>, Partial<SerieItem> {
+	id: number;
+	backdrop_path: string;
+	overview: string;
+	poster_path: string;
+	vote_average: number;
+	vote_count: number;
+	original_language: string;
+	genre_ids: number[];
+	popularity: number;
+	adult: boolean;
+}

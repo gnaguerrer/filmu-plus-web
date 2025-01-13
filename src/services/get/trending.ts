@@ -1,17 +1,17 @@
-import { DefaultListParams, DefaultListResponse, MovieItem } from '@/types';
+import { DefaultListParams, DefaultListResponse, MediaItem } from '@/types';
 import { axiosClient } from '../axiosClient';
 
 export const getTrending = async (
 	time_window: 'day' | 'week',
 	params?: DefaultListParams
-): Promise<DefaultListResponse<MovieItem>> => {
+): Promise<DefaultListResponse<MediaItem>> => {
 	try {
 		const response = await axiosClient().get(`/trending/all/${time_window}`, {
 			params,
 		});
 
 		if (response.status === 200) {
-			return response.data as DefaultListResponse<MovieItem>;
+			return response.data as DefaultListResponse<MediaItem>;
 		}
 		throw new Error('No trendings found');
 	} catch (error) {

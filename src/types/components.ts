@@ -1,13 +1,10 @@
-import { MovieItem } from './services';
+import { MediaItem } from './services';
 
 export interface IPoster {
 	id: number;
 	title: string;
-	overview: string;
 	image: string;
-	backdrop: string;
 	rating: number;
-	auldt?: boolean;
 }
 
 export interface IAvatar {
@@ -16,7 +13,15 @@ export interface IAvatar {
 }
 
 export interface IPosterList {
-	data: MovieItem[];
+	data: MediaItem[];
 	isLoading?: boolean;
 	title?: string;
+}
+
+export interface IFeaturedPost {
+	image: string;
+	name: string;
+	average: number;
+	date?: string;
+	overview: string;
 }
