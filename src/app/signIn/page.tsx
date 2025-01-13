@@ -25,7 +25,6 @@ const SignInPage = (): React.JSX.Element => {
 						width="0"
 						height="0"
 						sizes="100vw"
-						placeholder="blur"
 					/>
 					<span className="mt-5 text-gray-50/90">
 						Explore movies and TV shows.

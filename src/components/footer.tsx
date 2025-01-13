@@ -12,7 +12,6 @@ export const Footer = (): React.JSX.Element => {
 				width="0"
 				height="0"
 				sizes="100vw"
-				placeholder="blur"
 			/>
 			<span className="mt-3 text-sm">
 				Made with ❤️ by

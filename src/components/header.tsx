@@ -69,7 +69,6 @@ export const Header = (): React.JSX.Element => {
 				}
 			)}
 		>
-			{' '}
 			<div className="flex items-center h-16 pl-10">
 				<Link href="/">
 					<Image
@@ -79,7 +78,6 @@ export const Header = (): React.JSX.Element => {
 						width="0"
 						height="0"
 						sizes="100vw"
-						placeholder="blur"
 					/>
 				</Link>
 				<div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-4">
