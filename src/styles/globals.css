@@ -79,3 +79,7 @@ body {
 	height: 100%;
 	width: 100%;
 }
+
+.image-gradient {
+	mask-image: linear-gradient(var(--filmu-black-dark) 50%, transparent);
+}
