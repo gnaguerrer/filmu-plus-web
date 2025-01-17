@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { PosterList } from '@/components';
+import first from 'lodash/first';
+import { FeaturedPost, PosterList } from '@/components';
 import { getPopularMovies, getTrending } from '@/services';
 
 const HomePage = (): React.JSX.Element => {
@@ -11,15 +12,27 @@ const HomePage = (): React.JSX.Element => {
 		queryFn: () => getPopularMovies(),
 	});
 
-	const { data: trending, isLoading: isLoadingTrending } = useQuery({
+	const { data: trendingData, isLoading: isLoadingTrending } = useQuery({
 		queryKey: ['TRENDING_DAY'],
 		queryFn: () => getTrending('day'),
 	});
 
+	const firstTrending = first(trendingData?.results);
+	const trending = trendingData?.results?.slice(1) ?? [];
+
 	return (
-		<main className="flex flex-col flex-grow mt-16 scrollbar-dark overflow-x-hidden max-w-full gap-4">
+		<main className="flex flex-col flex-grow mt-16 scrollbar-dark overflow-x-hidden max-w-full gap-4 pt-5">
+			{firstTrending && (
+				<FeaturedPost
+					image={firstTrending.backdrop_path}
+					name={firstTrending?.name ?? firstTrending?.title ?? ''}
+					average={firstTrending.vote_average}
+					date={firstTrending?.release_date}
+					overview={firstTrending.overview}
+				/>
+			)}
 			<PosterList
-				data={trending?.results ?? []}
+				data={trending ?? []}
 				isLoading={isLoadingTrending}
 				title="Trending Today"
 			/>
