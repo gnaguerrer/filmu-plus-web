@@ -1,6 +1,5 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { Footer, Header } from '@/components';
 import { NextAuthProvider, QueryProvider } from '@/providers';
 import '../styles/globals.css';
 
@@ -18,13 +17,7 @@ const RootLayout = ({
 		<html lang="en">
 			<NextAuthProvider>
 				<QueryProvider>
-					<body>
-						<div className="flex flex-col w-screen min-h-screen font-poppins">
-							<Header />
-							{children}
-							<Footer />
-						</div>
-					</body>
+					<body className="font-poppins">{children}</body>
 				</QueryProvider>
 			</NextAuthProvider>
 		</html>
