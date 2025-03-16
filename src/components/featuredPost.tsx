@@ -15,7 +15,7 @@ export const FeaturedPost = (props: IFeaturedPost) => {
 	return (
 		<div className="h-[28rem] relative bg-filmu-black-main ">
 			<Image
-				className="w-full h-[30rem] md:h-[32rem] absolute image-gradient opacity-75 object-cover"
+				className="w-full h-[30rem] md:h-[32rem] absolute image-gradient opacity-75 object-cover object-top"
 				src={`${process.env.NEXT_PUBLIC_TMDB_IMAGES}/original/${image}`}
 				alt={name}
 				width="0"

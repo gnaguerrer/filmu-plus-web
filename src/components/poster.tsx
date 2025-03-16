@@ -21,8 +21,8 @@ hover:ring-filmu-purple-main/70 hover:scale-105 transition-all"
 			/>
 			<span
 				className={clsx(
-					'absolute top-2 left-2 ring-1 ring-slate-100/70 px-2 py-0.5 rounded-md centered-flex bg-filmu-purple-main  ',
-					'text-xs text-slate-100'
+					'absolute top-2 left-2 ring-1 ring-slate-100/50 px-2 py-0.5 rounded-md centered-flex bg-gray-700/60  ',
+					'text-xs text-slate-100 gap-1'
 				)}
 			>
 				{rating.toFixed(1)}

@@ -65,7 +65,7 @@ export const PosterList = (props: IPosterList): React.JSX.Element => {
 	return (
 		<div className="relative w-screen scrollbar-hide flex justify-center flex-col">
 			{title && <h2 className="ml-12 mt-5 text-2xl">{title}</h2>}
-			<div className="h-72 start-0 w-12 absolute bg-gradient-to-r from-filmu-black-main/80 to-filmu-black-main/0 z-[1] mt-11">
+			<div className="h-72 start-0 w-20 absolute bg-gradient-to-r from-filmu-black-main/80 to-filmu-black-main/0 z-[1] mt-11">
 				<button
 					className={clsx(
 						'h-[93.5%] start-0 top-0 w-12 absolute opacity-0 hover:opacity-100 z-10',
@@ -102,7 +102,7 @@ export const PosterList = (props: IPosterList): React.JSX.Element => {
 							/>
 						))}
 			</div>
-			<div className="h-72 end-0 w-12 absolute bg-gradient-to-r from-filmu-black-main/0 to-filmu-black-main/80 mt-11">
+			<div className="h-72 end-0 w-20 absolute bg-gradient-to-r from-filmu-black-main/0 to-filmu-black-main/90 mt-11">
 				<button
 					className={clsx(
 						'h-full end-0 top-0 w-12 absolute opacity-0 hover:opacity-100 ',
