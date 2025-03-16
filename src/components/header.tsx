@@ -63,7 +63,7 @@ export const Header = (): React.JSX.Element => {
 	return (
 		<header
 			className={clsx(
-				'w-full flex items-center justify-between h-24 fixed top-0 z-50 transition-all duration-700',
+				'w-full flex items-center justify-between h-24 fixed top-0 z-10 transition-all duration-700',
 				{
 					'bg-filmu-black-main/90': isScrolled,
 				}
@@ -99,13 +99,13 @@ export const Header = (): React.JSX.Element => {
 				</div>
 			</div>
 			<Popover className="relative">
-				<PopoverButton className="mr-6 hidden sm:flex outline-none  ">
+				<PopoverButton className="mr-6 hidden sm:flex outline-none">
 					<Avatar hover src={user?.image} />
 				</PopoverButton>
 				<PopoverPanel
 					anchor="bottom"
 					className={clsx(
-						'bg-filmu-black-800 min-w-[11rem] mt-2 rounded-lg shadow-lg px-1 pt-1 pb-1.5'
+						'bg-filmu-black-800 min-w-[11rem] mt-2 rounded-lg shadow-lg px-1 pt-1 pb-1.5 z-[12]'
 					)}
 				>
 					<div className={clsx('w-full flex flex-col bg-filmu-black-800 px-1')}>
@@ -128,7 +128,7 @@ export const Header = (): React.JSX.Element => {
 				</PopoverButton>
 				<PopoverPanel
 					anchor="bottom"
-					className="flex flex-col bg-filmu-black-800 min-w-[11rem] mt-2 rounded-lg shadow-lg px-1 py-1.5"
+					className="flex flex-col bg-filmu-black-800 min-w-[11rem] mt-2 rounded-lg shadow-lg px-1 py-1.5 z-[12]"
 				>
 					<div className="flex flex-col gap-1 border-b border-slate-100/40 pb-1 pt-1.5 mb-1">
 						{options.map((option) => (
