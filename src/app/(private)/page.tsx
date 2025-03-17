@@ -4,17 +4,22 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import first from 'lodash/first';
 import { FeaturedPost, PosterList } from '@/components';
-import { getPopularMovies, getTrending } from '@/services';
+import { getPopularMovies, getPopularSeriesTV, getTrending } from '@/services';
 
 const HomePage = (): React.JSX.Element => {
-	const { data: popular, isLoading: isLoadingPopular } = useQuery({
+	const { data: trendingData, isLoading: isLoadingTrending } = useQuery({
+		queryKey: ['TRENDING_DAY'],
+		queryFn: () => getTrending('day'),
+	});
+
+	const { data: popularMovies, isLoading: isLoadingMovies } = useQuery({
 		queryKey: ['POPULAR_MOVIES'],
 		queryFn: () => getPopularMovies(),
 	});
 
-	const { data: trendingData, isLoading: isLoadingTrending } = useQuery({
-		queryKey: ['TRENDING_DAY'],
-		queryFn: () => getTrending('day'),
+	const { data: popularTV, isLoading: isLoadingTV } = useQuery({
+		queryKey: ['POPULAR_TV_SERIES'],
+		queryFn: () => getPopularSeriesTV(),
 	});
 
 	const firstTrending = first(trendingData?.results);
@@ -37,9 +42,14 @@ const HomePage = (): React.JSX.Element => {
 				title="Trending Today"
 			/>
 			<PosterList
-				data={popular?.results ?? []}
-				isLoading={isLoadingPopular}
+				data={popularMovies?.results ?? []}
+				isLoading={isLoadingMovies}
 				title="Popular Movies"
+			/>
+			<PosterList
+				data={popularTV?.results ?? []}
+				isLoading={isLoadingTV}
+				title="Popular TV Series"
 			/>
 		</main>
 	);
