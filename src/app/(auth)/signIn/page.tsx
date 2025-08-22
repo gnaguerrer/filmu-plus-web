@@ -15,7 +15,7 @@ const SignInPage = (): React.JSX.Element => {
 	}
 
 	return (
-		<main className="w-screen h-screen bg-projector bg-center font-poppins">
+		<main className="w-screen h-screen bg-projector bg-center">
 			<div className="flex h-full  bg-gradient-to-bl  from-[#191817] via-[#6100C2]/40 to-[#6100C2]/60">
 				<div className="w-full h-full flex flex-col items-center justify-center">
 					<Image
